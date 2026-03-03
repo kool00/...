@@ -1,0 +1,294 @@
+
+<html>
+<head>
+<title>Happy Birthday Ma'am ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  overflow:hidden;
+  background:#ffc0cb;
+  color:black;
+}
+
+/* Slide System */
+.page{
+  height:100vh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+  position:absolute;
+  top:0;
+  left:100%;
+  opacity:0;
+  transition:all 0.6s ease;
+}
+
+.active{
+  left:0;
+  opacity:1;
+}
+
+.exit{
+  left:-100%;
+  opacity:0;
+}
+
+h1{
+  font-size:40px;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:20px;
+  max-width:800px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.page img{
+  width:70%;
+  height:60vh;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 15px 40px gray;
+  margin-bottom:20px;
+}
+
+/* Vertical collage */
+.collage-vertical{
+  width:320px !important;
+  height:570px !important;
+  object-fit:cover !important;
+}
+
+/* Vertical Video */
+.video-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+video{
+  width:320px;
+  height:570px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+/* Navigation */
+.nav{
+  position:fixed;
+  bottom:25px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+button{
+  padding:12px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  background:#ff69b4;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff4fa3;
+  transform:scale(1.05);
+}
+
+/* Floating Emojis */
+.floating{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:floatUp 6s linear infinite;
+  z-index:0;
+  opacity:0.8;
+  pointer-events:none;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(0) scale(1);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-110vh) scale(1.6);
+    opacity:0;
+  }
+}
+
+footer{
+  margin-top:20px;
+  font-size:18px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="bgm.mpeg" type="audio/mpeg">
+</audio>
+
+<section class="page active">
+  <h1>Happy Birthday Ma'am 🎉</h1>
+  <img src="1.1.jpeg">
+  <p>
+Happiest Birthday DOYEL Ma'am , Today we celebrate not just your birthday,
+  but the beautiful impact you have had on Class 
+  </p>
+</section>
+
+<section class="page">
+  <h1>Your Time With Us 💖</h1>
+  <img src="4.1.jpeg">
+  <p>
+
+
+        From strict attendance checks
+        every moment became part of our story.
+
+        You didn’t just teach Chemistry —
+        you taught us discipline, confidence,
+        and how to face challenges without fear..
+  </p>
+</section>
+
+<section class="page">
+  <h1>Our Beautiful Memories 📸</h1>
+<img src="10.2.jpeg" class="collage-vertical">
+  <p>
+    These memories are moments filled with laughter and lessons
+    we will cherish forever.
+  </p>
+</section>
+
+<section class="page">
+  <div class="video-container">
+    <h1>Thank You Ma'am 🌸</h1>
+    <p>
+      
+    Ma’am, you might wonder why this dance video is here in the Thank You page it’s because it shows your fun side that makes us love you even more.
+    </p>
+    <video controls>
+      <source src="video 1.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<section class="page">
+  <h1>One Small Birthday Wish 🎂</h1>
+ <img src="6.jpeg" class="collage-vertical">
+  <p>
+   On your special day,
+    we humbly request one full PE period
+    as your birthday gift to Class 11B 😇
+    plzz plzzz mam , dont say no!!, only one class Ma'am
+  </p>
+</section>
+
+<section class="page">
+  <h1>With Love ❤️</h1>
+  <img src="5.18.jpeg">
+  <p> Once again Happiest Birthday Ma'am 
+     We may forget formulas,
+    but we will never forget your guidance.
+  </p>
+  <footer>Made with respect by Class 11 B</footer>
+</section>
+
+<div class="nav">
+  <button id="nextBtn" onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+let slides=document.querySelectorAll(".page");
+let current=0;
+let nextBtn=document.getElementById("nextBtn");
+
+function showSlide(index){
+  slides.forEach(slide=>{
+    slide.classList.remove("active","exit");
+  });
+
+  slides[current].classList.add("exit");
+  current=index;
+  slides[current].classList.add("active");
+
+  if(current===slides.length-1){
+    nextBtn.style.display="none";
+  }else{
+    nextBtn.style.display="block";
+  }
+}
+
+function nextSlide(){
+  if(current < slides.length-1){
+    showSlide(current+1);
+  }
+}
+
+/* Floating Emojis */
+function startFloatingEmojis(){
+  const emojis=["🥰","💖","🌸","✨","🎉"];
+  setInterval(()=>{
+    const emoji=document.createElement("div");
+    emoji.classList.add("floating");
+    emoji.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    emoji.style.left=Math.random()*100+"vw";
+    emoji.style.fontSize=(Math.random()*20+15)+"px";
+    emoji.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(emoji);
+    setTimeout(()=>{emoji.remove();},6000);
+  },400);
+}
+startFloatingEmojis();
+
+/* BGM Logic */
+const bgMusic = document.getElementById("bgMusic");
+const videos = document.querySelectorAll("video");
+
+/* Start music on first click */
+document.addEventListener("click", function startMusicOnce() {
+  bgMusic.play();
+  document.removeEventListener("click", startMusicOnce);
+});
+
+/* Pause when video plays */
+videos.forEach(video => {
+  video.addEventListener("play", () => {
+    bgMusic.pause();
+  });
+
+  video.addEventListener("pause", () => {
+    bgMusic.play();
+  });
+
+  video.addEventListener("ended", () => {
+    bgMusic.play();
+  });
+});
+</script>
+
+</body>
+</html>
